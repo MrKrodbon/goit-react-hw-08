@@ -6,20 +6,22 @@ import { useId } from "react";
 const ContactForm = ({ onSetNewContact }) => {
   const nameFieldId = useId();
   const numberFiledId = useId();
+  const phoneNumberRegex = /^\+380\s?\d{3}\s?\d{2}\s?\d{2}$/;
 
   const validationSchema = Yup.object().shape({
     name: Yup.string()
       .min(2, "Too short name")
       .max(50, "Too long name")
       .required("Field name is required"),
+    number: Yup.string()
+      .required("Phone number reqired")
+      .matches(phoneNumberRegex, "Phone number must match +380 XXX XX XX"),
   });
 
   const onSubmitFormHandle = (values, actions) => {
     actions.resetForm();
     onSetNewContact(values);
   };
-
-  //need to add validation for number
 
   return (
     <Formik
@@ -37,8 +39,13 @@ const ContactForm = ({ onSetNewContact }) => {
             name="name"
             id={nameFieldId}
             className={styles.formField}
+            placeholder="John Wick"
           />
-          <ErrorMessage name="name" component="span"></ErrorMessage>
+          <ErrorMessage
+            className={styles.error}
+            name="name"
+            component="span"
+          ></ErrorMessage>
         </div>
         <div className={styles.fieldContainer}>
           <label htmlFor={numberFiledId} className={styles.label}>
@@ -49,7 +56,13 @@ const ContactForm = ({ onSetNewContact }) => {
             name="number"
             id={numberFiledId}
             className={styles.formField}
+            placeholder="+380 XXX XX XX"
           />
+          <ErrorMessage
+            className={styles.error}
+            name="number"
+            component="span"
+          ></ErrorMessage>
         </div>
         <button type="submit" className={styles.submitBtn}>
           Add contact
