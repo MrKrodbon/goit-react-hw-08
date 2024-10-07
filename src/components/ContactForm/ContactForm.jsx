@@ -18,11 +18,13 @@ const ContactForm = ({ onSetNewContact }) => {
       .matches(phoneNumberRegex, "Phone number must match +380 XXX XX XX"),
   });
 
-  //Need to add trim name
-
   const onSubmitFormHandle = (values, actions) => {
+    const trimmedValues = {
+      name: values.name.trim(),
+      number: values.number.trim(),
+    };
     actions.resetForm();
-    onSetNewContact(values);
+    onSetNewContact(trimmedValues);
   };
 
   return (

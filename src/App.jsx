@@ -10,7 +10,10 @@ import ContactList from "./components/ContactList/ContactList";
 function App() {
   const getContactFromStorage = () => {
     const savedContact = JSON.parse(window.localStorage.getItem("contactInfo"));
-    return savedContact || initialContacts;
+    if (savedContact === null || savedContact.length === 0) {
+      return initialContacts;
+    }
+    return savedContact;
   };
 
   const saveContactToStorage = (contacts) => {
