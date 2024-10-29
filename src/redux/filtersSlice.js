@@ -6,8 +6,12 @@ const slice = createSlice({
     name: "",
   },
   reducers: {
-    changeFilter: (state, actions) => {},
-    selectNameFilter: (state, actions) => {},
+    changeFilter: (state, actions) => {
+      state.name = actions.payload;
+    },
+    selectNameFilter: (state, actions) => {
+      return state.name;
+    },
   },
 });
 

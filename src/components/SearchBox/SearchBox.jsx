@@ -1,7 +1,10 @@
+import { useSelector } from "react-redux";
 import styles from "./SearchBox.module.css";
 import { useId } from "react";
 
-const SearchBox = ({ value, onFilteredContact }) => {
+import { changeFilter } from "../../redux/filtersSlice";
+
+const SearchBox = () => {
   const numberFieldId = useId();
 
   return (
@@ -14,7 +17,7 @@ const SearchBox = ({ value, onFilteredContact }) => {
         name="filter"
         value={value}
         className={styles.searchField}
-        onChange={(e) => onFilteredContact(e.target.value)}
+        onChange={(e) => changeFilter(e.target.value)}
         id={numberFieldId}
       ></input>
     </div>
