@@ -3,27 +3,18 @@ import Contact from "../Contact/Contact";
 import styles from "./ContactList.module.css";
 
 const ContactList = () => {
+  const selectNameFilter = useSelector((state) => state.filters.name);
   const selectContacts = useSelector((state) => state.contacts.items);
 
-  // useEffect(() => {
-  //    saveContactToStorage(contact);
-  // const getContactFromStorage = () => {
-  //   const savedContact = JSON.parse(window.localStorage.getItem("contactInfo"));
-  //   if (savedContact === null || savedContact.length === 0) {
-  //     return initialContacts;
-  //   }
-  //   return savedContact;
-  // };
-
-  // const saveContactToStorage = (contacts) => {
-  //   localStorage.setItem("contactInfo", JSON.stringify(contacts));
-  // };
-  // }, [contact]);
+  const filteredContacts = selectContacts.filter((filterContact) =>
+    filterContact.name.toLowerCase().includes(selectNameFilter.toLowerCase())
+  );
+  console.log(selectNameFilter);
 
   return (
     <ul className={styles.selectContacts}>
-      {selectContacts.map((contact) => (
-        <li key={contact.name} className={styles.contactForm}>
+      {filteredContacts.map((contact) => (
+        <li key={contact.id} className={styles.contactForm}>
           <Contact contact={contact} />
         </li>
       ))}

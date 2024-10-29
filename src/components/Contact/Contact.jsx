@@ -1,17 +1,15 @@
 import styles from "./Contact.module.css";
 import { IoMdPerson } from "react-icons/io";
 import { FaPhoneAlt } from "react-icons/fa";
+import { useDispatch } from "react-redux";
+import { deleteContact } from "../../redux/contactsSlice";
 
-const Contact = ({ contact: { id, name, number }, onDelete }) => {
-  // const onDeleteContact = (contactId) => {
-  //   console.log(contactId);
+const Contact = ({ contact: { id, name, number } }) => {
+  const dispatch = useDispatch();
 
-  //   setContact((prevContacts) => {
-  //     return prevContacts.filter(
-  //       (contactToFilter) => contactToFilter.id !== contactId
-  //     );
-  //   });
-  // };
+  const onDeleteContactHandler = () => {
+    dispatch(deleteContact(id));
+  };
 
   return (
     <>
@@ -27,8 +25,8 @@ const Contact = ({ contact: { id, name, number }, onDelete }) => {
       </div>
       <button
         type="button"
-        className={styles.contactControl}
-        onClick={() => onDelete(id)}
+        className={styles.contactControlBtn}
+        onClick={onDeleteContactHandler}
       >
         Delete
       </button>
