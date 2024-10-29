@@ -8,44 +8,33 @@ import SearchBox from "./components/SearchBox/SearchBox";
 import ContactList from "./components/ContactList/ContactList";
 
 function App() {
-  const getContactFromStorage = () => {
-    const savedContact = JSON.parse(window.localStorage.getItem("contactInfo"));
-    if (savedContact === null || savedContact.length === 0) {
-      return initialContacts;
-    }
-    return savedContact;
-  };
+  // const getContactFromStorage = () => {
+  //   const savedContact = JSON.parse(window.localStorage.getItem("contactInfo"));
+  //   if (savedContact === null || savedContact.length === 0) {
+  //     return initialContacts;
+  //   }
+  //   return savedContact;
+  // };
 
-  const saveContactToStorage = (contacts) => {
-    localStorage.setItem("contactInfo", JSON.stringify(contacts));
-  };
+  // const saveContactToStorage = (contacts) => {
+  //   localStorage.setItem("contactInfo", JSON.stringify(contacts));
+  // };
 
-  const [contact, setContact] = useState(() => {
-    return getContactFromStorage();
-  });
+  // const [contact, setContact] = useState(() => {
+  //   return getContactFromStorage();
+  // });
 
   const [filter, setFilter] = useState("");
 
-  useEffect(() => {
-    saveContactToStorage(contact);
-  }, [contact]);
+  
 
   const onAddContact = (newContact) => {
-    setContact((prevContacts) => {
-      return [...prevContacts, newContact];
-    });
+    // setContact((prevContacts) => {
+    //   return [...prevContacts, newContact];
+    // });
   };
 
-  const onDeleteContact = (contactId) => {
-    console.log(contactId);
-
-    setContact((prevContacts) => {
-      return prevContacts.filter(
-        (contactToFilter) => contactToFilter.id !== contactId
-      );
-    });
-  };
-
+ 
   const filteredContacts = contact.filter((filterContact) =>
     filterContact.name.toLowerCase().includes(filter.toLowerCase())
   );
@@ -55,7 +44,7 @@ function App() {
       <h1>Phonebook</h1>
       <ContactForm onSetNewContact={onAddContact} />
       <SearchBox value={filter} onFilteredContact={setFilter} />
-      <ContactList contactList={filteredContacts} onDelete={onDeleteContact} />
+      <ContactList onDelete={onDeleteContact} />
     </div>
   );
 }

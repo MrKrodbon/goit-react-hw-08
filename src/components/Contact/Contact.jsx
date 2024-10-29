@@ -3,6 +3,16 @@ import { IoMdPerson } from "react-icons/io";
 import { FaPhoneAlt } from "react-icons/fa";
 
 const Contact = ({ contact: { id, name, number }, onDelete }) => {
+  // const onDeleteContact = (contactId) => {
+  //   console.log(contactId);
+
+  //   setContact((prevContacts) => {
+  //     return prevContacts.filter(
+  //       (contactToFilter) => contactToFilter.id !== contactId
+  //     );
+  //   });
+  // };
+
   return (
     <>
       <div className={styles.contactInfo}>
