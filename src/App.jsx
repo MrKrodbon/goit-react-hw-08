@@ -24,27 +24,22 @@ function App() {
   //   return getContactFromStorage();
   // });
 
-  const [filter, setFilter] = useState("");
+  // const onAddContact = (newContact) => {
+  //   // setContact((prevContacts) => {
+  //   //   return [...prevContacts, newContact];
+  //   // });
+  // };
 
-  
-
-  const onAddContact = (newContact) => {
-    // setContact((prevContacts) => {
-    //   return [...prevContacts, newContact];
-    // });
-  };
-
- 
-  const filteredContacts = contact.filter((filterContact) =>
-    filterContact.name.toLowerCase().includes(filter.toLowerCase())
-  );
+  // const filteredContacts = contact.filter((filterContact) =>
+  //   filterContact.name.toLowerCase().includes(filter.toLowerCase())
+  // );
 
   return (
     <div className="container">
       <h1>Phonebook</h1>
-      <ContactForm onSetNewContact={onAddContact} />
-      <SearchBox value={filter} onFilteredContact={setFilter} />
-      <ContactList onDelete={onDeleteContact} />
+      <ContactForm />
+      <SearchBox />
+      <ContactList />
     </div>
   );
 }

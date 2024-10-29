@@ -2,10 +2,15 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import styles from "./ContactForm.module.css";
 import { useId } from "react";
+import { useDispatch } from "react-redux";
 
-const ContactForm = ({ onSetNewContact }) => {
+import { deleteContact, addContact } from "../../redux/contactsSlice";
+
+const ContactForm = () => {
   const nameFieldId = useId();
   const numberFiledId = useId();
+  const dispatch = useDispatch();
+
   const phoneNumberRegex = /^\+380\s?\d{3}\s?\d{2}\s?\d{2}$/;
 
   const validationSchema = Yup.object().shape({
@@ -23,8 +28,8 @@ const ContactForm = ({ onSetNewContact }) => {
       name: values.name.trim(),
       number: values.number.trim(),
     };
+    dispatch(addContact(trimmedValues));
     actions.resetForm();
-    onSetNewContact(trimmedValues);
   };
 
   return (

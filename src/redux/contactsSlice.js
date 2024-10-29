@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const contactReducer = createSlice({
+const slice = createSlice({
   name: "contacts",
   initialState: {
     items: [
@@ -29,8 +29,8 @@ const contactReducer = createSlice({
   reducers: {
     addContact: (state, action) => {
       state.items.push(action.payload);
-      getContactFromStorage();
-      saveContactToStorage();
+      // getContactFromStorage();
+      // saveContactToStorage();
     },
     deleteContact: (state, action) => {
       state.items.filter((contact) => contact.id !== action.payload);
@@ -38,8 +38,6 @@ const contactReducer = createSlice({
   },
 });
 
+export const { addContact, deleteContact } = slice.actions;
 
-
-export const { addContact, deleteContact } = contactReducer.actions;
-
-export default contactReducer.reducer;
+export default slice.reducer;
