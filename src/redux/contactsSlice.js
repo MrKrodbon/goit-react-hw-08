@@ -1,6 +1,6 @@
 import { createSlice, createSelector } from "@reduxjs/toolkit";
 import { fetchContacts, addContact, deleteContact } from "./contactsOps";
-import selectNameFilter from "./filtersSlice";
+import { changeFilter } from "./filtersSlice";
 
 export const selectContacts = (state) => state.contacts.items;
 
@@ -16,7 +16,7 @@ const handleRejected = (state, action) => {
 
 const slice = createSlice({
   name: "contacts",
-  contacts: {
+  initialState: {
     items: [],
     loading: false,
     error: null,
@@ -24,34 +24,34 @@ const slice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchContacts.pending, handlePending)
-      .addCase(fetchContacts.fulfilled, (state, actins) => {
+      .addCase(fetchContacts.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
-        state.items = actins.payload;
+        state.items = action.payload;
       })
       .addCase(fetchContacts.rejected, handleRejected)
       .addCase(addContact.pending, handlePending)
-      .addCase(addContact.fulfilled, (state, actins) => {
+      .addCase(addContact.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
-        state.items.push(actins.payload);
+        state.items.push(action.payload);
       })
       .addCase(addContact.rejected, handleRejected)
       .addCase(deleteContact.pending, handlePending)
-      .addCase(deleteContact.fulfilled, (state, actins) => {
+      .addCase(deleteContact.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
         const index = state.items.findIndex(
-          (contactId) => contactId === actins.payload.id
+          (contactId) => contactId === action.payload.id
         );
-        state.items.splice(index, 1, actins.payload);
+        state.items.splice(index, 1, action.payload);
       })
       .addCase(deleteContact.rejected, handleRejected);
   },
 });
 
 export const selectFilteredContacts = createSelector(
-  [selectContacts, selectNameFilter],
+  [selectContacts, changeFilter],
   (contacts, filter) => {
     return contacts.filter((contact) =>
       contact.name.toLowerCase().includes(filter.toLowerCase())
