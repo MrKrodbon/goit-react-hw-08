@@ -3,7 +3,7 @@ import styles from "./SearchBox.module.css";
 import { useId } from "react";
 
 import { changeFilter } from "../../redux/filtersSlice";
-import { selectFilteredContacts } from "../../redux/contactsSlice";
+import { selectFilteredContacts } from "../../redux/selectors";
 
 const SearchBox = () => {
   const numberFieldId = useId();
