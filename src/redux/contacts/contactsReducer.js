@@ -11,7 +11,7 @@ const handleRejected = (state, action) => {
   state.error = action.payload;
 };
 
-const slice = createSlice({
+const contactSlice = createSlice({
   name: "contacts",
   initialState: {
     items: [],
@@ -39,12 +39,13 @@ const slice = createSlice({
         state.loading = false;
         state.error = null;
         const index = state.items.findIndex(
-          (contactId) => contactId === action.payload.id
+          (contact) => contact.id === action.payload.id
         );
-        state.items.splice(index, 1, action.payload);
+
+        state.items.splice(index, 1);
       })
       .addCase(deleteContact.rejected, handleRejected);
   },
 });
 
-export default slice.reducer;
+export default contactSlice.reducer;

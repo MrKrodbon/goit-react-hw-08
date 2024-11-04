@@ -1,16 +1,23 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Contact from "../Contact/Contact";
 import styles from "./ContactList.module.css";
-import { selectFilteredContacts } from "../../redux/selectors";
+import { selectFilteredContacts, selectLoading } from "../../redux/selectors";
 import { useEffect } from "react";
+import { fetchContacts } from "../../redux/contacts/contactsOps";
+import { Loader } from "../Loader/Loader";
 
 const ContactList = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchContacts());
+  }, [dispatch]);
+
   const filteredContacts = useSelector(selectFilteredContacts);
-  console.log(filteredContacts);
-  // add try catch to fetchContacts here
-  // useEffect(() => {}, []);
+  const isLoading = useSelector(selectLoading);
+
   return (
     <ul className={styles.selectContacts}>
+      {isLoading && <Loader />}
       {Array.isArray(filteredContacts) &&
         filteredContacts.map((contact) => (
           <li key={contact.id} className={styles.contactForm}>

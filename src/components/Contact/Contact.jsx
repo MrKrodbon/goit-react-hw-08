@@ -2,7 +2,7 @@ import styles from "./Contact.module.css";
 import { IoMdPerson } from "react-icons/io";
 import { FaPhoneAlt } from "react-icons/fa";
 import { useDispatch } from "react-redux";
-import { deleteContact } from "../../redux/contactsOps";
+import { deleteContact } from "../../redux/contacts/contactsOps";
 
 const Contact = ({ contact: { id, name, number } }) => {
   const dispatch = useDispatch();

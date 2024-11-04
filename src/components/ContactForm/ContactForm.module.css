@@ -7,11 +7,12 @@
   flex-direction: column;
   width: 400px;
   margin-bottom: 20px;
+  background-color: #5f4e55;
 }
 
 .fieldContainer {
   display: flex;
-  align-items: start;
+  align-items: center;
   flex-direction: column;
   margin-bottom: 20px;
 }
@@ -40,7 +41,7 @@
 }
 
 .submitBtn:hover {
-  background-color: green;
+  background-color: #d4cace;
   color: white;
 }
 
