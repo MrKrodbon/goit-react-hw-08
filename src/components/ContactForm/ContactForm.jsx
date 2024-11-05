@@ -11,7 +11,7 @@ const ContactForm = () => {
   const numberFiledId = useId();
   const dispatch = useDispatch();
 
-  const phoneNumberRegex = /^\+380\s?\d{3}\s?\d{2}\s?\d{2}$/;
+  const phoneNumberRegex = /^\d{3}\s?\d{2}\s?\d{2}$/;
 
   const validationSchema = Yup.object().shape({
     name: Yup.string()
@@ -20,7 +20,7 @@ const ContactForm = () => {
       .required("Field name is required"),
     number: Yup.string()
       .required("Phone number reqired")
-      .matches(phoneNumberRegex, "Phone number must match +380 XXX XX XX"),
+      .matches(phoneNumberRegex, "Phone number must match XXX XX XX"),
   });
 
   const onSubmitFormHandle = (values, actions) => {
@@ -65,7 +65,7 @@ const ContactForm = () => {
             name="number"
             id={numberFiledId}
             className={styles.formField}
-            placeholder="+380 XXX XX XX"
+            placeholder="XXX XX XX"
           />
           <ErrorMessage
             className={styles.error}
