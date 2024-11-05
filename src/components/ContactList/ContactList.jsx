@@ -16,12 +16,12 @@ const ContactList = () => {
   const isLoading = useSelector(selectLoading);
 
   return (
-    <ul className={styles.selectContacts}>
+    <ul className={styles.contactList}>
       {isLoading && <Loader />}
       {Array.isArray(filteredContacts) &&
         filteredContacts.map((contact) => (
-          <li key={contact.id} className={styles.contactForm}>
-            <Contact contact={contact} />
+          <li key={contact.id}>
+            <Contact contact={contact} className={styles.contactListItem}/>
           </li>
         ))}
     </ul>

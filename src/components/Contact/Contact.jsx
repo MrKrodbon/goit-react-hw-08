@@ -12,7 +12,7 @@ const Contact = ({ contact: { id, name, number } }) => {
   };
 
   return (
-    <>
+    <div className={styles.contactWrapper}>
       <div className={styles.contactInfo}>
         <p className={styles.contactContent}>
           <IoMdPerson className={styles.icon} />
@@ -30,7 +30,7 @@ const Contact = ({ contact: { id, name, number } }) => {
       >
         Delete
       </button>
-    </>
+    </div>
   );
 };
 
