@@ -3,7 +3,7 @@ import Contact from "../Contact/Contact";
 import styles from "./ContactList.module.css";
 import { selectFilteredContacts, selectLoading } from "../../redux/selectors";
 import { useEffect } from "react";
-import { fetchContacts } from "../../redux/contacts/contactsOps";
+import { fetchContacts } from "../../redux/contactsOps";
 import { Loader } from "../Loader/Loader";
 
 const ContactList = () => {
