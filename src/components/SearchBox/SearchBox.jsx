@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux";
 import styles from "./SearchBox.module.css";
 import { useId } from "react";
 
-import { changeFilter } from "../../redux/filter/filtersReducer";
+import { changeFilter } from "../../redux/filter/slice";
 
 const SearchBox = () => {
   const numberFieldId = useId();
