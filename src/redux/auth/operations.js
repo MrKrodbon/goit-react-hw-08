@@ -8,52 +8,74 @@ export const authInstance = axios.create({
 
 // Utility to remove JWT
 export const setToken = (token) => {
-  authInstance.defaults.headers.common.Authorization = token;
+  authInstance.defaults.headers.common.Authorization = `Bearer ${token}`;
 };
 
 export const clearToken = () => {
   authInstance.defaults.headers.common.Authorization = "";
 };
 
-export const register = createAsyncThunk("auth/register", () => {
-  async (user, thunkAPI) => {
+export const apiRegisterUser = createAsyncThunk(
+  "auth/register",
+  async (formData, thunkAPI) => {
     try {
-      const response = axios.post("users/signup", { user });
+      const { data } = await authInstance.post("/users/signup", formData);
+
       // After successful registration, add the token to the HTTP header
-      setToken(response.data.token);
-      return response.data;
+      setToken(data.token);
+      //token
+      // :
+      // "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzMwYjg1MGM0OTVlZDZlMjVmMzkxMmYiLCJpYXQiOjE3MzEyNDYxNjB9.QCvvnkaXHbAEnhdhNsrajFpjpGBI-OYzqTelgQR3slw"
+      // user
+      // :
+      // email
+      // :
+      // "tir21@gmail.com"
+      // name
+      // :
+      // "Sam jacson"
+      return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
-  };
-});
+  }
+);
 
-export const login = createAsyncThunk("auth/login", () => {
-  async (credentials, thunkAPI) => {
+export const apiLoginUser = createAsyncThunk(
+  "auth/login",
+  async (formData, thunkAPI) => {
     try {
-      const response = axios.post("users/login", { credentials });
+      const { data } = await authInstance.post("/users/login", formData);
       // After successful login, add the token to the HTTP header
-      setToken(response.data.token);
-      return response.data;
+      //       {
+      //   "email": "string",
+      //   "password": "string"
+      // }
+      console.log(data);
+
+      setToken(data.token);
+      return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
-  };
-});
+  }
+);
 
-export const logout = createAsyncThunk("auth/logout", () => {
+export const apiLogoutUser = createAsyncThunk(
+  "auth/logout",
   async (_, thunkAPI) => {
     try {
-      axios.post("users/logout");
+      await authInstance.post("/users/logout");
       // After successful logout, clear the token from the HTTP header
       clearToken();
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
-  };
-});
+  }
+);
 
-export const refresh = createAsyncThunk("auth/refresh", () => {
+export const apiRefreshUser = createAsyncThunk(
+  "auth/refresh",
   async (_, thunkAPI) => {
     // Reading the token from the state via getState()
     const state = thunkAPI.getState();
@@ -63,10 +85,10 @@ export const refresh = createAsyncThunk("auth/refresh", () => {
       return thunkAPI.rejectWithValue("Unable to fetch user");
     }
     try {
-      const response = axios.get("users/current");
+      const response = await authInstance.get("/users/current");
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
-  };
-});
+  }
+);

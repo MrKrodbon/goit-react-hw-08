@@ -1,30 +1,26 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { useDispatch } from "react-redux";
-import { apiRegisterUser } from "../../redux/auth/operations.js";
+import { apiLoginUser } from "../../redux/auth/operations.js";
 import * as Yup from "yup";
-import styles from "./RegistrationPage.module.css";
 
-const RegistrationForm = () => {
+import styles from "./LoginForm.module.css";
+
+const LoginForm = () => {
   const dispatch = useDispatch();
 
-  const INITIAL_VALUES = { name: "", email: "", password: "" };
+  const INITIAL_VALUES = { email: "", password: "" };
 
   const onSubmitFormHandle = (values, actions) => {
     const trimmedValues = {
-      name: values.name.trim(),
       email: values.email.trim(),
       password: values.password,
     };
 
-    dispatch(apiRegisterUser(trimmedValues));
+    dispatch(apiLoginUser(trimmedValues));
     actions.resetForm();
   };
 
   const validationSchema = Yup.object().shape({
-    name: Yup.string()
-      .min(2, "Too short name")
-      .max(30, "Too long name")
-      .required("Field name is required"),
     email: Yup.string()
       .email("Email must be valid")
       .required("Email name is required"),
@@ -41,20 +37,6 @@ const RegistrationForm = () => {
         onSubmit={onSubmitFormHandle}
       >
         <Form className={styles.form}>
-          <div className={styles.fieldContainer}>
-            <label className={styles.label}>Name</label>
-            <Field
-              type="text"
-              name="name"
-              className={styles.formField}
-              placeholder="John Wick"
-            />
-            <ErrorMessage
-              className={styles.error}
-              name="name"
-              component="span"
-            ></ErrorMessage>
-          </div>
           <div className={styles.fieldContainer}>
             <label className={styles.label}>Email</label>
             <Field
@@ -84,7 +66,7 @@ const RegistrationForm = () => {
           </div>
           <div className={styles.fieldContainer}></div>
           <button type="submit" className={styles.submitBtn}>
-            Register
+            Log in
           </button>
         </Form>
       </Formik>
@@ -92,4 +74,4 @@ const RegistrationForm = () => {
   );
 };
 
-export default RegistrationForm;
+export default LoginForm;

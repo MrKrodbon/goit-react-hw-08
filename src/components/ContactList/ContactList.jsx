@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import Contact from "../Contact/Contact";
-import styles from "./ContactList.module.css";
+import css from "./ContactList.module.css";
 import { selectFilteredContacts } from "../../redux/filter/selectors";
 import { selectLoading } from "../../redux/contacts/selectors";
 import { useEffect } from "react";
@@ -19,11 +19,11 @@ const ContactList = () => {
   return (
     <>
       {isLoading && <Loader />}
-      <ul className={styles.contactList}>
+      <ul className={css.contactList}>
         {Array.isArray(filteredContacts) &&
           filteredContacts.map((contact) => (
             <li key={contact.id}>
-              <Contact contact={contact} className={styles.contactListItem} />
+              <Contact contact={contact} className={css.contactListItem} />
             </li>
           ))}
       </ul>
