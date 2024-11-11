@@ -1,31 +1,31 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import Contact from "../Contact/Contact";
 import css from "./ContactList.module.css";
 import { selectFilteredContacts } from "../../redux/filter/selectors";
 import { selectLoading } from "../../redux/contacts/selectors";
-import { useEffect } from "react";
-import { fetchContacts } from "../../redux/contacts/operations";
 import { Loader } from "../Loader/Loader";
 
 const ContactList = () => {
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(fetchContacts());
-  }, [dispatch]);
-
   const filteredContacts = useSelector(selectFilteredContacts);
   const isLoading = useSelector(selectLoading);
+
+  console.log(filteredContacts);
 
   return (
     <>
       {isLoading && <Loader />}
       <ul className={css.contactList}>
-        {Array.isArray(filteredContacts) &&
+        {filteredContacts.length !== 0 ? (
           filteredContacts.map((contact) => (
             <li key={contact.id}>
               <Contact contact={contact} className={css.contactListItem} />
             </li>
-          ))}
+          ))
+        ) : (
+          <li>
+            <p>There is no contacts yet</p>
+          </li>
+        )}
       </ul>
     </>
   );

@@ -1,6 +1,6 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { useDispatch } from "react-redux";
-import { apiLoginUser } from "../../redux/auth/operations.js";
+import { login } from "../../redux/auth/operations.js";
 import * as Yup from "yup";
 
 import styles from "./LoginForm.module.css";
@@ -16,7 +16,7 @@ const LoginForm = () => {
       password: values.password,
     };
 
-    dispatch(apiLoginUser(trimmedValues));
+    dispatch(login(trimmedValues));
     actions.resetForm();
   };
 

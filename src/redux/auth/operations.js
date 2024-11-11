@@ -1,21 +1,21 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-// Utility to add JWT
 export const authInstance = axios.create({
   baseURL: "https://connections-api.goit.global/",
 });
 
-// Utility to remove JWT
+// Utility to add JWT
 export const setToken = (token) => {
   authInstance.defaults.headers.common.Authorization = `Bearer ${token}`;
 };
 
+// Utility to remove JWT
 export const clearToken = () => {
   authInstance.defaults.headers.common.Authorization = "";
 };
 
-export const apiRegisterUser = createAsyncThunk(
+export const register = createAsyncThunk(
   "auth/register",
   async (formData, thunkAPI) => {
     try {
@@ -41,17 +41,11 @@ export const apiRegisterUser = createAsyncThunk(
   }
 );
 
-export const apiLoginUser = createAsyncThunk(
+export const login = createAsyncThunk(
   "auth/login",
   async (formData, thunkAPI) => {
     try {
       const { data } = await authInstance.post("/users/login", formData);
-      // After successful login, add the token to the HTTP header
-      //       {
-      //   "email": "string",
-      //   "password": "string"
-      // }
-      console.log(data);
 
       setToken(data.token);
       return data;
@@ -61,32 +55,32 @@ export const apiLoginUser = createAsyncThunk(
   }
 );
 
-export const apiLogoutUser = createAsyncThunk(
-  "auth/logout",
-  async (_, thunkAPI) => {
-    try {
-      await authInstance.post("/users/logout");
-      // After successful logout, clear the token from the HTTP header
-      clearToken();
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
+export const logout = createAsyncThunk("auth/logout", async (_, thunkAPI) => {
+  try {
+    await authInstance.post("/users/logout");
+    // After successful logout, clear the token from the HTTP header
+    clearToken();
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.message);
   }
-);
+});
 
-export const apiRefreshUser = createAsyncThunk(
+export const refreshUser = createAsyncThunk(
   "auth/refresh",
   async (_, thunkAPI) => {
-    // Reading the token from the state via getState()
     const state = thunkAPI.getState();
     const persistToken = state.auth.token;
 
-    if (persistToken === null) {
-      return thunkAPI.rejectWithValue("Unable to fetch user");
+    if (!persistToken) {
+      return thunkAPI.rejectWithValue(
+        "Unable to refresh user. Not valid or empty token"
+      );
     }
+
     try {
-      const response = await authInstance.get("/users/current");
-      return response.data;
+      setToken(persistToken);
+      const { data } = await authInstance.get("/users/current");
+      return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }

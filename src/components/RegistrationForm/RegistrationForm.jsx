@@ -1,6 +1,6 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { useDispatch } from "react-redux";
-import { apiRegisterUser } from "../../redux/auth/operations.js";
+import { register } from "../../redux/auth/operations.js";
 import * as Yup from "yup";
 import styles from "./RegistrationPage.module.css";
 
@@ -16,7 +16,7 @@ const RegistrationForm = () => {
       password: values.password,
     };
 
-    dispatch(apiRegisterUser(trimmedValues));
+    dispatch(register(trimmedValues));
     actions.resetForm();
   };
 
