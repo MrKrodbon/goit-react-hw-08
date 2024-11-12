@@ -22,15 +22,15 @@ const UserMenu = () => {
   };
 
   return (
-    <>
+    <div className={styles.usersNavigationWrapper}>
       <NavLink className={buildCssClasses} to="/contacts">
         Contacts
       </NavLink>
-      <NavLink className={buildCssClasses} to="/" onClick={onLogoutHandle}>
+      <button className={styles.logoutBtn} onClick={onLogoutHandle}>
         Log out
-      </NavLink>
+      </button>
       <p className={styles.welcomeToUser}>Hello {userData.name}!</p>
-    </>
+    </div>
   );
 };
 

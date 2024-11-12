@@ -1,25 +1,23 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-export const authInstance = axios.create({
-  baseURL: "https://connections-api.goit.global/",
-});
+axios.defaults.baseURL = "https://connections-api.goit.global/";
 
 // Utility to add JWT
 export const setToken = (token) => {
-  authInstance.defaults.headers.common.Authorization = `Bearer ${token}`;
+  axios.defaults.headers.common.Authorization = `Bearer ${token}`;
 };
 
 // Utility to remove JWT
 export const clearToken = () => {
-  authInstance.defaults.headers.common.Authorization = "";
+  axios.defaults.headers.common.Authorization = "";
 };
 
 export const register = createAsyncThunk(
   "auth/register",
   async (formData, thunkAPI) => {
     try {
-      const { data } = await authInstance.post("/users/signup", formData);
+      const { data } = await axios.post("/users/signup", formData);
 
       // After successful registration, add the token to the HTTP header
       setToken(data.token);
@@ -34,7 +32,7 @@ export const login = createAsyncThunk(
   "auth/login",
   async (formData, thunkAPI) => {
     try {
-      const { data } = await authInstance.post("/users/login", formData);
+      const { data } = await axios.post("/users/login", formData);
 
       setToken(data.token);
       return data;
@@ -46,7 +44,7 @@ export const login = createAsyncThunk(
 
 export const logout = createAsyncThunk("auth/logout", async (_, thunkAPI) => {
   try {
-    await authInstance.post("/users/logout");
+    await axios.post("/users/logout");
     // After successful logout, clear the token from the HTTP header
     clearToken();
   } catch (error) {
@@ -68,7 +66,7 @@ export const refreshUser = createAsyncThunk(
 
     try {
       setToken(persistToken);
-      const { data } = await authInstance.get("/users/current");
+      const { data } = await axios.get("/users/current");
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

@@ -23,7 +23,7 @@ const SearchBox = () => {
         className={styles.searchField}
         onChange={handleFilter}
         id={numberFieldId}
-      ></input>
+      />
     </div>
   );
 };

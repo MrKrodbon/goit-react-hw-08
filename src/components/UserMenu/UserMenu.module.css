@@ -1,9 +1,16 @@
+.usersNavigationWrapper {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
 .link {
   color: #f8f6f7;
   border-bottom: none;
 }
 
 .link:hover {
+  display: flex;
   color: #f8f6f7;
   border-bottom: 3px solid #f8f6f7;
   transition: border-bottom 0.1s;
@@ -15,4 +22,18 @@
 
 .welcomeToUser {
   margin: 0;
+}
+
+.logoutBtn {
+  color: #f8f6f7;
+  background-color: transparent;
+  padding: 0;
+}
+
+.logoutBtn:hover {
+  color: #f8f6f7;
+  border-radius: 0;
+  border: none;
+  border-bottom: 3px solid #f8f6f7;
+  transition: border-bottom 0.1s;
 }

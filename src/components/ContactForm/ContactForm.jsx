@@ -1,14 +1,11 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import styles from "./ContactForm.module.css";
-import { useId } from "react";
 import { useDispatch } from "react-redux";
 
 import { addContact } from "../../redux/contacts/operations";
 
 const ContactForm = () => {
-  const nameFieldId = useId();
-  const numberFiledId = useId();
   const dispatch = useDispatch();
 
   const phoneNumberRegex = /^\d{3}\s?\d{2}\s?\d{2}$/;
@@ -40,13 +37,10 @@ const ContactForm = () => {
     >
       <Form className={styles.form}>
         <div className={styles.fieldContainer}>
-          <label htmlFor={nameFieldId} className={styles.label}>
-            Name
-          </label>
+          <label className={styles.label}>Name</label>
           <Field
             type="text"
             name="name"
-            id={nameFieldId}
             className={styles.formField}
             placeholder="John Wick"
           />
@@ -57,13 +51,10 @@ const ContactForm = () => {
           ></ErrorMessage>
         </div>
         <div className={styles.fieldContainer}>
-          <label htmlFor={numberFiledId} className={styles.label}>
-            Number
-          </label>
+          <label className={styles.label}>Number</label>
           <Field
             type="text"
             name="number"
-            id={numberFiledId}
             className={styles.formField}
             placeholder="XXX XX XX"
           />

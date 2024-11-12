@@ -9,13 +9,11 @@ const ContactList = () => {
   const filteredContacts = useSelector(selectFilteredContacts);
   const isLoading = useSelector(selectLoading);
 
-  console.log("filtered contacts", filteredContacts);
-
   return (
     <>
       {isLoading && <Loader />}
       <ul className={styles.contactList}>
-        {filteredContacts.length !== null ? (
+        {filteredContacts.length !== 0 ? (
           filteredContacts.map((contact) => (
             <li key={contact.id}>
               <Contact contact={contact} className={styles.contactListItem} />
@@ -23,7 +21,7 @@ const ContactList = () => {
           ))
         ) : (
           <li>
-            <p>There is no contacts yet</p>
+            <h3>There is no contacts yet</h3>
           </li>
         )}
       </ul>

@@ -3,8 +3,10 @@ import styles from "./HomePage.module.css";
 const HomePage = () => {
   return (
     <div className={styles.homePageWrapper}>
-      <h1 className={styles.mainTitle}>Phonebook</h1>
-      <div>HomePage</div>
+      <p className={styles.mainTitle}>Contact book</p>
+      <p className={styles.secondTitle}>
+        Go-To Online Contact Book for Easy Contact Management
+      </p>
     </div>
   );
 };
