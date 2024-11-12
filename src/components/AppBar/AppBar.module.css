@@ -1,6 +1,19 @@
 .header {
   display: flex;
-  gap: 10px;
+  justify-content: space-between;
   margin-bottom: 20px;
   font-size: 20px;
+}
+
+.headerNavigation {
+  display: flex;
+  gap: 20px;
+}
+
+.link {
+  color: #f8f6f7;
+}
+
+.link.active {
+  border-bottom: 3px solid #f8f6f7;
 }

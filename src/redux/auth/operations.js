@@ -23,17 +23,6 @@ export const register = createAsyncThunk(
 
       // After successful registration, add the token to the HTTP header
       setToken(data.token);
-      //token
-      // :
-      // "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzMwYjg1MGM0OTVlZDZlMjVmMzkxMmYiLCJpYXQiOjE3MzEyNDYxNjB9.QCvvnkaXHbAEnhdhNsrajFpjpGBI-OYzqTelgQR3slw"
-      // user
-      // :
-      // email
-      // :
-      // "tir21@gmail.com"
-      // name
-      // :
-      // "Sam jacson"
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

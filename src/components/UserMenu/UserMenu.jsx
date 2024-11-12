@@ -1,13 +1,12 @@
 import { NavLink } from "react-router-dom";
 import clsx from "clsx";
-import css from "./UserMenu.module.css";
+import styles from "./UserMenu.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { selectUserData } from "../../redux/auth/selectors";
 import { logout } from "../../redux/auth/operations";
 
-const buildCssClasses = ({ isActive }) => {
-  clsx(css.link, isActive && css.active);
-};
+const buildCssClasses = ({ isActive }) =>
+  clsx(styles.link, isActive && styles.active);
 
 const UserMenu = () => {
   const userData = useSelector(selectUserData);
@@ -30,7 +29,7 @@ const UserMenu = () => {
       <NavLink className={buildCssClasses} to="/" onClick={onLogoutHandle}>
         Log out
       </NavLink>
-      <p>Hello {userData.name}</p>
+      <p className={styles.welcomeToUser}>Hello {userData.name}!</p>
     </>
   );
 };

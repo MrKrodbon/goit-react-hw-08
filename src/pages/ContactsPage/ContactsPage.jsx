@@ -1,6 +1,7 @@
 import ContactForm from "../../components/ContactForm/ContactForm";
 import ContactList from "../../components/ContactList/ContactList";
 import SearchBox from "../../components/SearchBox/SearchBox";
+import styles from "./ContactsPage.module.css";
 
 import { useDispatch } from "react-redux";
 
@@ -14,11 +15,11 @@ const ContactsPage = () => {
   }, [dispatch]);
 
   return (
-    <>
+    <div className={styles.contactsPageWrapper}>
       <ContactForm />
       <SearchBox />
       <ContactList />
-    </>
+    </div>
   );
 };
 

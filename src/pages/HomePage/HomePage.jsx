@@ -1,9 +1,9 @@
-import css from "./HomePage.module.css";
+import styles from "./HomePage.module.css";
 
 const HomePage = () => {
   return (
-    <div className={css.homePageWrapper}>
-      <h1 className={css.mainTitle}>Phonebook</h1>
+    <div className={styles.homePageWrapper}>
+      <h1 className={styles.mainTitle}>Phonebook</h1>
       <div>HomePage</div>
     </div>
   );
