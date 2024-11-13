@@ -1,8 +1,8 @@
 import "./App.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { refreshUser } from "./redux/auth/operations";
-import { redirect, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 
 import HomePage from "./pages/HomePage/HomePage";
 import RegistrationPage from "./pages/RegistrationPage/RegistrationPage";
@@ -11,15 +11,23 @@ import ContactsPage from "./pages/ContactsPage/ContactsPage";
 import Layout from "./components/Layout";
 import PrivateRoute from "./components/PrivateRoute";
 import RestrictedRoute from "./components/RestrictedRoute";
+import { selectIsRefreshing } from "./redux/auth/selectors";
+import { Loader } from "./components/Loader/Loader";
 
 function App() {
   const dispatch = useDispatch();
+  const isResfreshUser = useSelector(selectIsRefreshing);
 
   useEffect(() => {
     dispatch(refreshUser());
   }, [dispatch]);
 
-  return (
+  return isResfreshUser ? (
+    <div>
+      <p className="refresh">Please, wait. We are refreshing your data</p>
+      <Loader />
+    </div>
+  ) : (
     <div className="container">
       <Layout>
         <Routes>

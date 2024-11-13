@@ -13,6 +13,10 @@ body {
   background-attachment: fixed;
 }
 
+.refresh {
+  font-size: 30px;
+}
+
 /* .container {
   display: flex;
   flex-direction: column;
