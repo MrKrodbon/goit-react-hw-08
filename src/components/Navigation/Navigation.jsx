@@ -2,8 +2,6 @@ import { useSelector } from "react-redux";
 import { selectIsLoggedIn } from "../../redux/auth/selectors";
 
 import { NavLink } from "react-router-dom";
-import UserMenu from "../UserMenu/UserMenu";
-import AuthNav from "../AuthNav/AuthNav";
 
 import styles from "./Navigation.module.css";
 import clsx from "clsx";
@@ -15,15 +13,17 @@ const buildCssClasses = ({ isActive }) =>
 const Navigation = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
   return (
-    <>
+    <div className={styles.navigationLinks}>
       <NavLink className={buildCssClasses} to="/">
         <IoHome className={styles.icon} />
         Home
       </NavLink>
-      <div className={styles.navigationLinks}>
-        {isLoggedIn ? <UserMenu /> : <AuthNav />}
-      </div>
-    </>
+      {isLoggedIn && (
+        <NavLink className={buildCssClasses} to="/contacts">
+          Contacts
+        </NavLink>
+      )}
+    </div>
   );
 };
 
