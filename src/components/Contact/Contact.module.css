@@ -5,10 +5,16 @@
   align-items: center;
   height: 80px;
   width: 350px;
-  border: 1px solid black;
+  border: 1px solid gray;
   border-radius: 8px;
-  background-color: #99898f;
+  background-color: #a49aa4;
   padding: 10px;
+}
+
+.contactControlBtnsWrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
 }
 
 .contactInfo {
@@ -24,7 +30,8 @@
   font-weight: bold;
 }
 
-.contactControlBtn {
+.contactDeleteBtn,
+.contactEditBtn {
   background-color: whitesmoke;
   color: black;
   display: flex;
@@ -37,8 +44,13 @@
   transition: background-color 0.5s ease, color 0.5s ease;
 }
 
-.contactControlBtn:hover {
+.contactDeleteBtn:hover {
   background-color: #da888d;
+  color: white;
+}
+
+.contactEditBtn:hover {
+  background-color: #bfb0b6;
   color: white;
 }
 

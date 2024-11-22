@@ -1,7 +1,23 @@
 .loginPageWrapper {
-  min-height: 100vh;
+  min-height: 80vh;
+  width: 980px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  justify-content: center;
+  gap: 40px;
+  justify-content: space-between;
+}
+
+.description {
+  font-size: 28px;
+  font-weight: normal;
+  line-height: 32px;
+  width: 400px;
+}
+
+.logo {
+  font-size: 48px;
+  font-weight: normal;
+  line-height: 32px;
+  width: 400px;
 }

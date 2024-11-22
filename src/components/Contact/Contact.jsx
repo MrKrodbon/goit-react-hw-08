@@ -4,11 +4,17 @@ import { FaPhoneAlt } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { deleteContact } from "../../redux/contacts/operations";
 
+import { FaRegTrashAlt } from "react-icons/fa";
+import { FaUserEdit } from "react-icons/fa";
+
 const Contact = ({ contact: { id, name, number } }) => {
   const dispatch = useDispatch();
 
   const onDeleteContactHandler = () => {
     dispatch(deleteContact(id));
+  };
+  const onEditContactHandler = () => {
+    // dispatch(deleteContact(id));
   };
 
   return (
@@ -23,13 +29,22 @@ const Contact = ({ contact: { id, name, number } }) => {
           {number}
         </p>
       </div>
-      <button
-        type="button"
-        className={styles.contactControlBtn}
-        onClick={onDeleteContactHandler}
-      >
-        Delete
-      </button>
+      <div className={styles.contactControlBtnsWrapper}>
+        <button
+          type="button"
+          className={styles.contactEditBtn}
+          onClick={onEditContactHandler}
+        >
+          <FaUserEdit />
+        </button>
+        <button
+          type="button"
+          className={styles.contactDeleteBtn}
+          onClick={onDeleteContactHandler}
+        >
+          <FaRegTrashAlt />
+        </button>
+      </div>
     </div>
   );
 };

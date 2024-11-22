@@ -1,7 +1,14 @@
 .registerPageWrapper {
-  min-height: 100vh;
+  min-height: 80vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+.logo {
+  font-size: 48px;
+  font-weight: normal;
+  line-height: 32px;
+  width: 400px;
 }

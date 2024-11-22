@@ -1,7 +1,18 @@
 .contactsPageWrapper {
   margin-top: 100px;
-  min-height: 100vh;
+  min-height: 80vh;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: space-between;
   align-items: start;
+}
+
+.contactsPageSearchWrapper {
+  border-radius: 8px;
+  border: 1px solid gray;
+  background-color: #99898f;
+  height: 568px;
+  padding: 20px;
+  overflow: auto;
+  scroll-behavior: smooth;
 }
