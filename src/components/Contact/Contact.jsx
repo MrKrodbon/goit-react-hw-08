@@ -10,8 +10,7 @@ import Modal from "../Modal/Modal";
 import { selectIsModalOpen } from "../../redux/contacts/selectors";
 import { openModal } from "../../redux/contacts/slice";
 
-
-const Contact = ({ contact: { id, name, number } }) => {
+const Contact = ({ contact }) => {
   const dispatch = useDispatch();
   const isModalOpen = useSelector(selectIsModalOpen);
 
@@ -28,11 +27,11 @@ const Contact = ({ contact: { id, name, number } }) => {
       <div className={styles.contactInfo}>
         <p className={styles.contactContent}>
           <IoMdPerson className={styles.icon} />
-          {name}
+          {contact.name}
         </p>
         <p className={styles.contactContent}>
           <FaPhoneAlt className={styles.icon} />
-          {number}
+          {contact.number}
         </p>
       </div>
       <div className={styles.contactControlBtnsWrapper}>
@@ -51,7 +50,7 @@ const Contact = ({ contact: { id, name, number } }) => {
           <FaRegTrashAlt />
         </button>
       </div>
-      {isModalOpen && <Modal />}
+      {isModalOpen && <Modal contact={contact} />}
     </div>
   );
 };
