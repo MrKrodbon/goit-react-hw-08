@@ -3,22 +3,24 @@ import { IoMdPerson } from "react-icons/io";
 import { FaPhoneAlt } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteContact } from "../../redux/contacts/operations";
-import { selectIsModalOpen } from "../../redux/contacts/selectors";
 
 import { FaRegTrashAlt } from "react-icons/fa";
 import { FaUserEdit } from "react-icons/fa";
 import Modal from "../Modal/Modal";
-import { useState } from "react";
+import { selectIsModalOpen } from "../../redux/contacts/selectors";
+import { openModal } from "../../redux/contacts/slice";
+
 
 const Contact = ({ contact: { id, name, number } }) => {
-  const isModalOpen = useSelector(selectIsModalOpen);
   const dispatch = useDispatch();
+  const isModalOpen = useSelector(selectIsModalOpen);
 
   const onDeleteContactHandler = () => {
     dispatch(deleteContact(id));
   };
-  const onEditContactHandler = () => {
-    //  dispatch(deleteContact(id));
+
+  const onOpenModalHandler = () => {
+    dispatch(openModal());
   };
 
   return (
@@ -37,7 +39,7 @@ const Contact = ({ contact: { id, name, number } }) => {
         <button
           type="button"
           className={styles.contactEditBtn}
-          onClick={onEditContactHandler}
+          onClick={onOpenModalHandler}
         >
           <FaUserEdit />
         </button>

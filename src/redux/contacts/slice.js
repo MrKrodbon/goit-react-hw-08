@@ -25,6 +25,14 @@ const contactSlice = createSlice({
     error: null,
     isModalOpen: false,
   },
+  reducers: {
+    openModal: (state) => {
+      state.isModalOpen = true;
+    },
+    closeModal: (state) => {
+      state.isModalOpen = false;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchContacts.pending, handlePending)
@@ -57,21 +65,24 @@ const contactSlice = createSlice({
         state.error = null;
       })
       .addCase(deleteContact.rejected, handleRejected)
-      .addCase(editContact.pending, (state) => {
-        state.loading = true;
-        state.error = null;
-        state.isModalOpen = false;
-      })
+
+      .addCase(editContact.pending, handlePending)
       .addCase(editContact.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
-        state.isModalOpen = true;
 
         const index = state.items.findIndex(
           (contact) => contact.id === action.payload.id
         );
-      });
+
+        //update contact
+        if (index !== -1) {
+          state.items[index] = action.payload;
+        }
+      })
+      .addCase(editContact.rejected, handleRejected);
   },
 });
 
+export const { openModal, closeModal } = contactSlice.actions;
 export default contactSlice.reducer;
