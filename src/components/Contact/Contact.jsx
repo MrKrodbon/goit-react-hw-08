@@ -15,7 +15,7 @@ const Contact = ({ contact }) => {
   const isModalOpen = useSelector(selectIsModalOpen);
 
   const onDeleteContactHandler = () => {
-    dispatch(deleteContact(id));
+    dispatch(deleteContact(contact.id));
   };
 
   const onOpenModalHandler = () => {

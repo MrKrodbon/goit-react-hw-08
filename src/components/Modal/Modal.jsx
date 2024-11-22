@@ -8,6 +8,9 @@ import { closeModal } from "../../redux/contacts/slice";
 import { editContact } from "../../redux/contacts/operations";
 
 const Modal = ({ contact: { id, name, number } }) => {
+  console.log(id);
+  console.log(name);
+
   const dispatch = useDispatch();
   const onCloseModalHandler = () => {
     dispatch(closeModal());
@@ -18,9 +21,8 @@ const Modal = ({ contact: { id, name, number } }) => {
       name: values.name.trim(),
       number: values.number.trim(),
     };
-    console.log(trimmedValues);
 
-    dispatch(editContact(id, trimmedValues));
+    dispatch(editContact({ contactId: id, fieldsToUpdate: trimmedValues }));
     dispatch(closeModal());
     actions.resetForm();
   };
