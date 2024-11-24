@@ -6,7 +6,7 @@
 }
 
 body {
-  background-image: url("./img/background.jpg");
+  background-image: url("./assets/background.jpg");
   object-fit: cover;
   background-repeat: no-repeat;
   color: #f8f6f7;

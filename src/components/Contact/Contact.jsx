@@ -9,7 +9,6 @@ import { FaUserEdit } from "react-icons/fa";
 import Modal from "../Modal/Modal";
 import { selectIsModalOpen } from "../../redux/contacts/selectors";
 import { openModal } from "../../redux/contacts/slice";
-import toast, { Toaster } from "react-hot-toast";
 
 const Contact = ({ contact }) => {
   const dispatch = useDispatch();
@@ -17,10 +16,6 @@ const Contact = ({ contact }) => {
 
   const onDeleteContactHandler = () => {
     dispatch(deleteContact(contact.id));
-    toast.success("Contact deleted succesfully", {
-      duration: 7000,
-      position: "top-center",
-    });
   };
 
   const onOpenModalHandler = () => {
@@ -56,7 +51,6 @@ const Contact = ({ contact }) => {
         </button>
       </div>
       {isModalOpen && <Modal />}
-      <Toaster />
     </div>
   );
 };
