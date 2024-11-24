@@ -6,6 +6,7 @@ import { NavLink } from "react-router-dom";
 import styles from "./Navigation.module.css";
 import clsx from "clsx";
 import { IoHome } from "react-icons/io5";
+import { RiContactsBook3Line } from "react-icons/ri";
 
 const buildCssClasses = ({ isActive }) =>
   clsx(styles.link, isActive && styles.active);
@@ -20,6 +21,7 @@ const Navigation = () => {
       </NavLink>
       {isLoggedIn && (
         <NavLink className={buildCssClasses} to="/contacts">
+          <RiContactsBook3Line className={styles.icon} />
           Contacts
         </NavLink>
       )}

@@ -1,17 +1,15 @@
-import React from "react";
-
 import styles from "./Modal.module.css";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { closeModal } from "../../redux/contacts/slice";
 import { editContact } from "../../redux/contacts/operations";
+import { selectContactToEdit } from "../../redux/contacts/selectors";
 
-const Modal = ({ contact: { id, name, number } }) => {
-  console.log(id);
-  console.log(name);
-
+const Modal = () => {
   const dispatch = useDispatch();
+  const contactToEdit = useSelector(selectContactToEdit);
+  const { id, name, number } = contactToEdit;
   const onCloseModalHandler = () => {
     dispatch(closeModal());
   };
@@ -81,21 +79,22 @@ const Modal = ({ contact: { id, name, number } }) => {
                       component="span"
                     ></ErrorMessage>
                   </div>
-                  <button className={styles.modalSubmitBtn} type="submit">
-                    Submit
-                  </button>
+                  <div className={styles.controlBtnsWrapper}>
+                    <button
+                      className={styles.modalCancelBtn}
+                      onClick={onCloseModalHandler}
+                      type="button"
+                    >
+                      Cancel
+                    </button>
+                    <button className={styles.modalSubmitBtn} type="submit">
+                      Submit
+                    </button>
+                  </div>
                 </Form>
               </Formik>
             </div>
-            <div className={styles.modalFooter}>
-              <button
-                className={styles.modalCancelBtn}
-                onClick={onCloseModalHandler}
-                type="button"
-              >
-                Cancel
-              </button>
-            </div>
+            <div className={styles.modalFooter}></div>
           </div>
         </div>
       </div>

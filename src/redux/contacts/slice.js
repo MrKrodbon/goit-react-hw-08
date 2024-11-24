@@ -24,13 +24,16 @@ const contactSlice = createSlice({
     loading: false,
     error: null,
     isModalOpen: false,
+    selectedContact: null,
   },
   reducers: {
-    openModal: (state) => {
+    openModal: (state, action) => {
       state.isModalOpen = true;
+      state.selectedContact = action.payload;
     },
     closeModal: (state) => {
       state.isModalOpen = false;
+      state.selectedContact = null;
     },
   },
   extraReducers: (builder) => {

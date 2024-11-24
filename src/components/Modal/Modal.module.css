@@ -94,6 +94,11 @@
   font-size: 20px;
 }
 
+.controlBtnsWrapper {
+  display: flex;
+  gap: 20px;
+}
+
 .modalSubmitBtn,
 .modalCancelBtn {
   background-color: whitesmoke;
