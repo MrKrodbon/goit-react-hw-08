@@ -21,7 +21,7 @@
   margin: 0;
 }
 
-/* @keyframes typing {
+@keyframes typing {
   from {
     width: 0;
   }
@@ -34,4 +34,4 @@
   50% {
     border-color: transparent;
   }
-} */
+}
