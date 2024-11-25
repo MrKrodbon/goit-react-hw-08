@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { closeModal } from "../../redux/contacts/slice";
 import { editContact } from "../../redux/contacts/operations";
 import { selectContactToEdit } from "../../redux/contacts/selectors";
+import toast, { Toaster } from "react-hot-toast";
+import { FcInfo } from "react-icons/fc";
 
 const Modal = () => {
   const dispatch = useDispatch();
@@ -19,10 +21,16 @@ const Modal = () => {
       name: values.name.trim(),
       number: values.number.trim(),
     };
+    if (name === values.name && number === values.number) {
+      toast("Change at least one field", { icon: <FcInfo /> });
+      return;
+    } else {
+      dispatch(editContact({ contactId: id, fieldsToUpdate: trimmedValues }));
+      toast.success("Contact edited successfully ");
+      dispatch(closeModal());
 
-    dispatch(editContact({ contactId: id, fieldsToUpdate: trimmedValues }));
-    dispatch(closeModal());
-    actions.resetForm();
+      actions.resetForm();
+    }
   };
 
   const phoneNumberRegex = /^\d{3}\s?\d{2}\s?\d{2}$/;
@@ -38,6 +46,7 @@ const Modal = () => {
   });
   return (
     <>
+      <Toaster />
       <div className={styles.modalOverlay}>
         <div className={styles.modalWindow}>
           <div className={styles.modalHeader}>
