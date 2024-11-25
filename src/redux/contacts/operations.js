@@ -1,7 +1,6 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { setToken } from "../auth/operations";
-
 export const fetchContacts = createAsyncThunk(
   "contacts/fetchAll",
   async (_, thunkAPI) => {
@@ -17,7 +16,6 @@ export const fetchContacts = createAsyncThunk(
     try {
       setToken(persistToken);
       const { data } = await axios.get("/contacts");
-
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
