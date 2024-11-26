@@ -1,12 +1,14 @@
 #root {
-  width: 1280px;
+  max-width: 1280px;
+  position: relative;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
 }
 
-body {
+html {
   background-image: url("./assets/background.jpg");
+
   object-fit: cover;
   background-repeat: no-repeat;
   color: #f8f6f7;

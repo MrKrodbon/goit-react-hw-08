@@ -1,0 +1,13 @@
+.burgerMenuNavigationLinks {
+  height: 100%;
+  width: 400px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 3;
+  background-color: gray;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+}
