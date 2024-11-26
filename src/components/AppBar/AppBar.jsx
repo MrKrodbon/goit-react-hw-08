@@ -27,7 +27,7 @@ const AppBar = () => {
       )} */}
       {/* {isBurgerMenuOpen && <BurgerMenu />} */}
 
-      <BurgerMenu />
+      {/* <BurgerMenu /> */}
       <div className={styles.appBarNavigationLinks}>
         {isLoggedIn ? <UserMenu /> : <AuthNav />}
       </div>

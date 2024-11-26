@@ -1,6 +1,5 @@
 .loginPageWrapper {
   min-height: 80vh;
-  width: 980px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -20,4 +19,13 @@
   font-weight: normal;
   line-height: 32px;
   width: 400px;
+}
+
+@media screen and (max-width: 768px) {
+  .loginPageWrapper {
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+  }
 }

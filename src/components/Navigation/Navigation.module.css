@@ -4,6 +4,7 @@
 }
 
 .link {
+  font-size: 25px;
   display: flex;
   align-items: center;
   color: #f8f6f7;
@@ -26,8 +27,8 @@
   padding-right: 5px;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (min-width: 768px) {
   .link {
-    font-size: 40px;
+    font-size: 20px;
   }
 }
