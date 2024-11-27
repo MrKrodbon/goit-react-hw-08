@@ -11,7 +11,16 @@ const authSlice = createSlice({
     token: null,
     isLoggedIn: false,
     isRefreshing: false,
+    isBurgerMenuOpen: false,
     error: null,
+  },
+  reducers: {
+    onOpenBurgerMenu: (state) => {
+      state.isBurgerMenuOpen = true;
+    },
+    onCloseBurgerMenu: (state) => {
+      state.isBurgerMenuOpen = false;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -48,4 +57,5 @@ const authSlice = createSlice({
   },
 });
 
+export const { onOpenBurgerMenu, onCloseBurgerMenu } = authSlice.actions;
 export default authSlice.reducer;
