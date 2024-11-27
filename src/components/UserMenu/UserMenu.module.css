@@ -6,6 +6,7 @@
 }
 
 .link {
+  font-size: 25px;
   display: flex;
   align-items: center;
   color: #f8f6f7;
@@ -20,10 +21,6 @@
   transition: border-bottom 0.5s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
-.welcomeToUser {
-  margin: 0;
-}
-
 .logoutBtn {
   display: flex;
   justify-content: center;
@@ -35,6 +32,7 @@
   padding: 0;
   border-radius: 0%;
   border-bottom: 3px solid transparent;
+  font-size: 25px;
 }
 
 .logoutBtn:hover {
@@ -55,4 +53,17 @@
   border: none;
   border-radius: 5px;
   padding: 5px 10px;
+}
+
+@media screen and (min-width: 768px) {
+  .link {
+    font-size: 20px;
+  }
+
+  .logoutBtn {
+    font-size: 20px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
 }

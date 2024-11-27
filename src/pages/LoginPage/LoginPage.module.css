@@ -1,11 +1,10 @@
 .loginPageWrapper {
   min-height: 80vh;
-  width: 980px;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
-  gap: 40px;
-  justify-content: space-between;
+  gap: 10px;
+  justify-content: center;
 }
 
 .description {
@@ -13,6 +12,7 @@
   font-weight: normal;
   line-height: 32px;
   width: 400px;
+  color: whitesmoke;
 }
 
 .logo {
@@ -20,4 +20,20 @@
   font-weight: normal;
   line-height: 32px;
   width: 400px;
+  color: whitesmoke;
+}
+
+@media screen and (min-width: 768px) {
+  .loginPageWrapper {
+    justify-content: start;
+    width: 910px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .loginPageWrapper {
+    flex-direction: row;
+    justify-content: start;
+    gap: 40px;
+  }
 }

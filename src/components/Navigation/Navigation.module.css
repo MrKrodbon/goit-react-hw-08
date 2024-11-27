@@ -1,9 +1,11 @@
 .navigationLinks {
   display: flex;
+  flex-direction: column;
   gap: 40px;
 }
 
 .link {
+  font-size: 25px;
   display: flex;
   align-items: center;
   color: #f8f6f7;
@@ -24,4 +26,21 @@
 
 .icon {
   padding-right: 5px;
+}
+
+@media screen and (min-width: 768px) {
+  .navigationLinks {
+    display: flex;
+    flex-direction: row;
+  }
+  .link {
+    font-size: 20px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .navigationLinks {
+    display: flex;
+    flex-direction: row;
+  }
 }
