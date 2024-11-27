@@ -1,7 +1,7 @@
 .contactsPageWrapper {
   min-height: 80vh;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
 }
@@ -14,8 +14,21 @@
   border: 1px solid gray;
   background-color: #99898f;
   width: 400px;
-  height: 568px;
+  height: 468px;
   padding: 20px;
   overflow: auto;
   scroll-behavior: smooth;
+}
+
+@media screen and (min-width: 768px) {
+  .contactsPageWrapper {
+    min-height: 80vh;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+  }
+
+  .contactsPageSearchWrapper {
+    height: 568px;
+  }
 }

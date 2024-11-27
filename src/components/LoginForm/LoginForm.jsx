@@ -1,12 +1,15 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../redux/auth/operations.js";
 import * as Yup from "yup";
 
 import styles from "./LoginForm.module.css";
+import { selectErrorAuth } from "../../redux/auth/selectors.js";
+import toast, { Toaster } from "react-hot-toast";
 
 const LoginForm = () => {
   const dispatch = useDispatch();
+  const errorMessage = useSelector(selectErrorAuth);
 
   const INITIAL_VALUES = { email: "", password: "" };
 
@@ -15,8 +18,16 @@ const LoginForm = () => {
       email: values.email.trim(),
       password: values.password,
     };
-
+    if (errorMessage !== null) {
+      toast.error("Incorrect login or password", {
+        duration: 3000,
+        position: "top-center",
+      });
+      actions.resetForm();
+      return;
+    }
     dispatch(login(trimmedValues));
+
     actions.resetForm();
   };
 
@@ -31,6 +42,7 @@ const LoginForm = () => {
 
   return (
     <div>
+      <Toaster />
       <Formik
         initialValues={INITIAL_VALUES}
         validationSchema={validationSchema}

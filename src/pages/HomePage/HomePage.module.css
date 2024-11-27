@@ -3,48 +3,38 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 442px;
+  width: 100%;
 }
 
 .mainTitle {
-  font-size: 50px;
+  font-size: 60px;
   margin-top: 0;
   overflow: hidden;
   text-wrap: nowrap;
+  color: whitesmoke;
 }
 
 .secondTitle {
+  display: flex;
+  justify-content: center;
   overflow: hidden;
   text-wrap: nowrap;
-  animation: typing 4s steps(30, end), blink 0.7s step-end infinite;
-  font-size: 15px;
+  color: whitesmoke;
+  /* animation: typing 1s steps(60, end), step-end infinite; */
+  font-size: 20px;
   margin: 0;
 }
 
-@keyframes typing {
+/* @keyframes typing {
   from {
-    width: 0;
+    width: 90%;
   }
   to {
     width: 100%;
   }
-}
-
-@keyframes blink {
-  50% {
-    border-color: transparent;
-  }
-}
+} */
 
 @media screen and (min-width: 768px) {
-  .homePageWrapper {
-    min-height: 80vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-
   .mainTitle {
     font-size: 100px;
     margin-top: 0;

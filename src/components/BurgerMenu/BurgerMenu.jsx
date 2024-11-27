@@ -18,8 +18,6 @@ const BurgerMenu = () => {
     dispatch(onCloseBurgerMenu());
   };
 
-  
-
   return (
     <div className={styles.burgerMenuNavigationLinks}>
       <div className={styles.closeBtnWrapper}>

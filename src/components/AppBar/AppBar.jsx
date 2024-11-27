@@ -3,11 +3,13 @@ import AuthNav from "../AuthNav/AuthNav";
 import Navigation from "../Navigation/Navigation";
 import UserMenu from "../UserMenu/UserMenu";
 import { RxHamburgerMenu } from "react-icons/rx";
+import { PiHandWavingLight } from "react-icons/pi";
 
 import styles from "./AppBar.module.css";
 import {
   selectIsBurgerMenuOpen,
   selectIsLoggedIn,
+  selectUserData,
 } from "../../redux/auth/selectors";
 import BurgerMenu from "../BurgerMenu/BurgerMenu";
 import { onCloseBurgerMenu, onOpenBurgerMenu } from "../../redux/auth/slice";
@@ -17,6 +19,7 @@ const AppBar = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const isBurgerMenuOpen = useSelector(selectIsBurgerMenuOpen);
   const dispatch = useDispatch();
+  const userData = useSelector(selectUserData);
 
   const onBurgerMenuClick = () => {
     dispatch(onOpenBurgerMenu());
@@ -34,6 +37,12 @@ const AppBar = () => {
 
   return (
     <header className={styles.header}>
+      {isLoggedIn && (
+        <p className={styles.welcomeToUser}>
+          <PiHandWavingLight className={styles.icon} />
+          Hello, {userData.name}!
+        </p>
+      )}
       <div className={styles.mobileNavigation}>
         <button onClick={onBurgerMenuClick}>
           <RxHamburgerMenu />
@@ -49,7 +58,6 @@ const AppBar = () => {
       </div>
       <div className={styles.navigation}>
         <Navigation />
-        {/* <BurgerMenu /> */}
         <div className={styles.appBarNavigationLinks}>
           {isLoggedIn ? <UserMenu /> : <AuthNav />}
         </div>
