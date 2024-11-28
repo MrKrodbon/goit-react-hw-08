@@ -74,7 +74,7 @@
 @media screen and (min-width: 768px) {
   .header {
     justify-content: space-between;
-    width: 910px;
+    width: 768px;
   }
 
   .mobileNavigation,
@@ -90,7 +90,7 @@
 @media screen and (min-width: 1280px) {
   .header {
     justify-content: space-between;
-    width: 1000px;
+    width: 910px;
   }
 
   .mobileNavigation,

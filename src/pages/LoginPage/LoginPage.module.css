@@ -1,32 +1,35 @@
-.loginPageWrapper {
-  min-height: 80vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  justify-content: center;
-}
+@media screen and (min-width: 320px) {
+  .loginPageWrapper {
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+    width: 320px;
+  }
 
-.description {
-  font-size: 28px;
-  font-weight: normal;
-  line-height: 32px;
-  width: 400px;
-  color: whitesmoke;
-}
+  .description {
+    font-size: 28px;
+    font-weight: normal;
+    line-height: 32px;
+    max-width: 400px;
+    color: whitesmoke;
+  }
 
-.logo {
-  font-size: 48px;
-  font-weight: normal;
-  line-height: 32px;
-  width: 400px;
-  color: whitesmoke;
+  .logo {
+    font-size: 48px;
+    font-weight: normal;
+    line-height: 32px;
+    max-width: 400px;
+    color: whitesmoke;
+  }
 }
 
 @media screen and (min-width: 768px) {
   .loginPageWrapper {
     justify-content: start;
-    width: 910px;
+    width: 768px;
   }
 }
 
