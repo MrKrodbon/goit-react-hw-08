@@ -1,14 +1,28 @@
-.registerPageWrapper {
-  min-height: 80vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+@media screen and (min-width: 320px) {
+  .registerPageWrapper {
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 320px;
+  }
+
+  .logo {
+    font-size: 48px;
+    font-weight: normal;
+    line-height: 32px;
+    max-width: 400px;
+  }
+}
+@media screen and (min-width: 768px) {
+  .registerPageWrapper {
+    width: 768px;
+  }
 }
 
-.logo {
-  font-size: 48px;
-  font-weight: normal;
-  line-height: 32px;
-  width: 400px;
+@media screen and (min-width: 1280px) {
+  .registerPageWrapper {
+    width: 910px;
+  }
 }
